@@ -1,0 +1,7 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "ephemeral/Flutter-Generated.xcconfig"
+<<<<<<< HEAD
+
+MACOSX_DEPLOYMENT_TARGET=10.14
+=======
+>>>>>>> 93bf6bca16fdd4cb529e27395b8d54966be290c1

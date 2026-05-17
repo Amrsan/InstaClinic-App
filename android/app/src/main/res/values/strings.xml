@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flutter_deeplinking_enabled">true</string>
+    <string name="facebook_app_id">1251879896335489</string>
+    <string name="fb_login_protocol_scheme">fb1251879896335489</string>
+    <string name="facebook_client_token">54384212ad039f6ece048135c2f41d0d</string>
+    <string name="server_client_id">pmglc8q38hgrpnh3lkdhmkc3o2blk44c.apps.googleusercontent.com</string>
+</resources> 

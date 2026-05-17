@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1040604959274",
+    "project_id": "instaclinics-beace",
+    "storage_bucket": "instaclinics-beace.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040604959274:android:9077e92fcf16eeca952953",
+        "android_client_info": {
+          "package_name": "com.freshhealth.instaclinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040604959274-a4f11cdf4k8dfkl3vechrjmij6bnc4n5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7wXrSyUNKS7tSrKqy3Vnj2uSAsqW6ojE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040604959274-a4f11cdf4k8dfkl3vechrjmij6bnc4n5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1040604959274-4516mviqitt65g072ohqi6kesht292n3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.freshhealth.instaclinic"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

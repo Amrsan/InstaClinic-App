@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Your Email - InstaClinics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #00A6A6 0%, #008080 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .confirm-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00A6A6 0%, #008080 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .confirm-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 166, 166, 0.3);
+        }
+        .welcome-section {
+            background-color: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #2e7d32;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 5px 0;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .features {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .features h3 {
+            color: #00A6A6;
+            margin-bottom: 15px;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 8px 0;
+            color: #555;
+        }
+        .features li:before {
+            content: "✓ ";
+            color: #00A6A6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏥 InstaClinics</div>
+            <h1>Welcome to InstaClinics!</h1>
+            <p>Please confirm your email address</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Hello {{ .Email }},
+            </div>
+            
+            <div class="message">
+                Thank you for joining InstaClinics! To complete your registration and start using our services, 
+                please confirm your email address by clicking the button below.
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="{{ .ConfirmationURL }}" class="confirm-button">
+                    Confirm Email Address
+                </a>
+            </div>
+            
+            <div class="welcome-section">
+                <h3>🎉 Welcome to the InstaClinics Family!</h3>
+                <p>You're now part of a community dedicated to making healthcare accessible, convenient, and personalized.</p>
+            </div>
+            
+            <div class="features">
+                <h3>What you can do with InstaClinics:</h3>
+                <ul>
+                    <li>Book appointments with healthcare professionals</li>
+                    <li>Access emergency medical services</li>
+                    <li>Get home nursing and care services</li>
+                    <li>Schedule lab tests and diagnostics</li>
+                    <li>Manage your medical history securely</li>
+                    <li>Receive personalized health recommendations</li>
+                </ul>
+            </div>
+            
+            <div class="message">
+                If the button above doesn't work, you can copy and paste the following link into your browser:
+                <br><br>
+                <a href="{{ .ConfirmationURL }}" style="color: #00A6A6; word-break: break-all;">
+                    {{ .ConfirmationURL }}
+                </a>
+            </div>
+            
+            <div class="message">
+                <strong>Need Help?</strong><br>
+                If you have any questions or need assistance, our support team is here to help:
+                <br>📧 Email: info@instaclinics.com
+                <br>📞 Phone: +201033298820
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>InstaClinics</strong> - Your trusted healthcare partner</p>
+            <p>This email was sent to {{ .Email }}</p>
+            <p>If you didn't create an account with InstaClinics, please ignore this email.</p>
+            <p>&copy; 2024 InstaClinics. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html> 
