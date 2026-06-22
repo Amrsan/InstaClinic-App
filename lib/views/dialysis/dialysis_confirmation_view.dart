@@ -493,13 +493,10 @@ class DialysisBookingConfirmationView extends GetView<BookingController> {
     
     if (success) {
       final paymentController = Get.find<PaymentController>();
-      final authToken = await paymentController.getAuthToken();
-      final orderId = await paymentController.getOrderId(authToken, clinic.price * selectedDates.length);
-      final paymentKey = await paymentController.getPaymentKey(authToken, orderId, clinic.price * selectedDates.length);
-      final iframeUrl = 'https://accept.paymob.com/api/acceptance/iframes/867108?payment_token=$paymentKey';
+      final checkoutUrl = await paymentController.getUnifiedCheckoutUrl(clinic.price * selectedDates.length);
       
       final result = await Get.to(() => PaymentWebView(
-        paymentUrl: iframeUrl,
+        paymentUrl: checkoutUrl,
         clinicName: clinic.name,
         price: clinic.price * selectedDates.length,
       ));

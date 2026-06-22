@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../models/saved_bank_card.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../views/payment/test_payment_view.dart';
 import '../controllers/profile_controller.dart';
 
@@ -18,9 +18,11 @@ class PaymentController extends GetxController {
   }
 
   // Paymob API Keys
-  final String apiKey = 'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2T1RrME16ZzNMQ0p1WVcxbElqb2lhVzVwZEdsaGJDSjkuVEprTWsyOVhTR0h4Rl9xQlRfdEUwSVB6N0VwdG93QV9IZmZ6OVhLU1RidXZfLU1RaGRnSkpkZmUwaURYSlh1Y0ZYMHgtR3g3N1RMV1loSHhIbzlnWUE=';
+  final String apiKey = dotenv.env['PAYMOB_API_KEY'] ?? '';
+  final String secretKey = dotenv.env['PAYMOB_SECRET_KEY'] ?? '';
+  final String publicKey = dotenv.env['PAYMOB_PUBLIC_KEY'] ?? '';
   final String integrationId = '4832092';
-  final String iframeId = 'https://accept.paymob.com/api/acceptance/iframes/867108?payment_token={payment_key_obtained_previously}';
+  final List<int> paymentMethods = [5155564, 5238766, 5551502];
 
   // Card details
   final cardNumber = ''.obs;
@@ -219,6 +221,51 @@ class PaymentController extends GetxController {
       );
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<String> getUnifiedCheckoutUrl(double amount) async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://accept.paymob.com/v1/intention/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token $secretKey',
+        },
+        body: jsonEncode({
+          'amount': (amount * 100).round(),
+          'currency': 'EGP',
+          'payment_methods': paymentMethods,
+          'billing_data': {
+            'apartment': 'NA',
+            'email': profileController.email.value.isNotEmpty ? profileController.email.value : 'NA',
+            'floor': 'NA',
+            'first_name': profileController.firstName.value.isNotEmpty ? profileController.firstName.value : 'Guest',
+            'street': 'NA',
+            'building': 'NA',
+            'phone_number': profileController.phoneNumber.value.isNotEmpty ? profileController.phoneNumber.value : 'NA',
+            'shipping_method': 'NA',
+            'postal_code': 'NA',
+            'city': 'NA',
+            'country': 'EG',
+            'last_name': profileController.lastName.value.isNotEmpty ? profileController.lastName.value : 'Guest',
+            'state': 'NA',
+          },
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        final data = jsonDecode(response.body);
+        final clientSecret = data['client_secret'];
+        return 'https://accept.paymob.com/unifiedcheckout/?publicKey=$publicKey&clientSecret=$clientSecret';
+      } else {
+        print('Failed to get client secret. Status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        final error = jsonDecode(response.body);
+        throw Exception('Failed to create payment intention: ${error['detail'] ?? response.body}');
+      }
+    } catch (e) {
+      throw Exception('Error getting unified checkout url: $e');
     }
   }
 

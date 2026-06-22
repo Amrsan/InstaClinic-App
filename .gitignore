@@ -32,12 +32,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-<<<<<<< HEAD
 .env
 
 # Web related
-=======
->>>>>>> 93bf6bca16fdd4cb529e27395b8d54966be290c1
 
 # Symbolication related
 app.*.symbols
@@ -49,8 +46,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-<<<<<<< HEAD
-
 # iOS/XCode related
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
@@ -80,5 +75,3 @@ app.*.map.json
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
-=======
->>>>>>> 93bf6bca16fdd4cb529e27395b8d54966be290c1

@@ -456,12 +456,9 @@ class ConfirmationView extends GetView<BookingController> {
 
                 if (ok) {
                   final paymentController = Get.find<PaymentController>();
-                  final authToken = await paymentController.getAuthToken();
-                  final orderId = await paymentController.getOrderId(authToken, clinic.price);
-                  final paymentKey = await paymentController.getPaymentKey(authToken, orderId, clinic.price);
-                  final iframeUrl = 'https://accept.paymob.com/api/acceptance/iframes/867108?payment_token=$paymentKey';
+                  final checkoutUrl = await paymentController.getUnifiedCheckoutUrl(clinic.price);
                   final result = await Get.to(() => PaymentWebView(
-                    paymentUrl: iframeUrl,
+                    paymentUrl: checkoutUrl,
                     clinicName: clinic.name,
                     price: clinic.price,
                   ));
@@ -496,11 +493,9 @@ class ConfirmationView extends GetView<BookingController> {
       Get.put(PaymentController());
     }
     final paymentController = Get.find<PaymentController>();
-    final authToken = await paymentController.getAuthToken();
-    final orderId = await paymentController.getOrderId(authToken, amount);
-    final paymentKey = await paymentController.getPaymentKey(authToken, orderId, amount);
+    final checkoutUrl = await paymentController.getUnifiedCheckoutUrl(amount);
     launchUrl(
-      Uri.parse("https://accept.paymob.com/api/acceptance/iframes/791787?payment_token=$paymentKey"),
+      Uri.parse(checkoutUrl),
     );
   } 
 }
