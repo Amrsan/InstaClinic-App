@@ -464,7 +464,7 @@ class LoginView extends GetView<AuthController> {
 }
 
 class _SocialLoginButton extends StatelessWidget {
-  final IconData icon;
+  final dynamic icon;
   final VoidCallback onPressed;
   final double scale;
 
@@ -482,7 +482,7 @@ class _SocialLoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: IconButton(
-        icon: FaIcon(icon, size: 20 * scale),
+        icon: FaIcon(icon as dynamic, size: 20 * scale),
         onPressed: onPressed,
         padding: EdgeInsets.all(12.0 * scale),
       ),
